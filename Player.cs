@@ -2,9 +2,9 @@
 
 namespace MessaginCenterDemo
 {
-    public class TestSender
+    public class Player
     {
-        public TestSender(IMessagingCenter messagingCenter)
+        public Player(IMessagingCenter messagingCenter)
         {
             messagingCenter.Send(this, "SANS_ARGS");
             messagingCenter.Send(this, "AVEC_ARGS", "Un message de la part d'un sender");

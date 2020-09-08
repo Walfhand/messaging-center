@@ -13,10 +13,10 @@ namespace MessaginCenterDemo
             IMessagingCenter messagingCenter = new MessagingCenter();
 
             //Je crée un subscriber et je vais me subscribe dans le constructeur pour la démo
-            TestSubscriber testSubsciber = new TestSubscriber(messagingCenter);
+            GameManager testSubsciber = new GameManager(messagingCenter);
 
             //Je crée un sender et je vais lancer dans le constructeur pour la démo
-            TestSender testSender = new TestSender(messagingCenter);
+            Player testSender = new Player(messagingCenter);
         }
     }
 }

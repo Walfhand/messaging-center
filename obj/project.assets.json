@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vanda\\source\\repos\\MessaginCenterDemo\\MessaginCenterDemo\\MessaginCenterDemo.csproj",
+      "projectUniqueName": "C:\\Users\\vanda\\Documents\\Project\\messaging-center-demo\\MessaginCenterDemo.csproj",
       "projectName": "MessaginCenterDemo",
-      "projectPath": "C:\\Users\\vanda\\source\\repos\\MessaginCenterDemo\\MessaginCenterDemo\\MessaginCenterDemo.csproj",
+      "projectPath": "C:\\Users\\vanda\\Documents\\Project\\messaging-center-demo\\MessaginCenterDemo.csproj",
       "packagesPath": "C:\\Users\\vanda\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vanda\\source\\repos\\MessaginCenterDemo\\MessaginCenterDemo\\obj\\",
+      "outputPath": "C:\\Users\\vanda\\Documents\\Project\\messaging-center-demo\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
