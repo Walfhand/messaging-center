@@ -1,9 +1,9 @@
-﻿using MessaginCenterDemo.Implementation;
-using MessaginCenterDemo.Interface;
+﻿using messaging_center.Impl;
+using messaging_center.Interfaces;
 
-namespace MessaginCenterDemo
+namespace messaging_center
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -13,10 +13,10 @@ namespace MessaginCenterDemo
             IMessagingCenter messagingCenter = new MessagingCenter();
 
             //Je crée un subscriber et je vais me subscribe dans le constructeur pour la démo
-            GameManager testSubsciber = new GameManager(messagingCenter);
+            Subscriber testSubsciber = new Subscriber(messagingCenter);
 
             //Je crée un sender et je vais lancer dans le constructeur pour la démo
-            Player testSender = new Player(messagingCenter);
+            Sender testSender = new Sender(messagingCenter);
         }
     }
 }

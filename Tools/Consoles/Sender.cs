@@ -1,10 +1,10 @@
-﻿using MessaginCenterDemo.Interface;
+﻿using messaging_center.Interfaces;
 
-namespace MessaginCenterDemo
+namespace messaging_center
 {
-    public class Player
+    internal class Sender
     {
-        public Player(IMessagingCenter messagingCenter)
+        public Sender(IMessagingCenter messagingCenter)
         {
             messagingCenter.Send(this, "SANS_ARGS");
             messagingCenter.Send(this, "AVEC_ARGS", "Un message de la part d'un sender");
