@@ -1,7 +1,5 @@
 ﻿using messaging_center.Impl;
 using messaging_center.Interfaces;
-using Serilog;
-using Serilog.Events;
 
 namespace messaging_center
 {

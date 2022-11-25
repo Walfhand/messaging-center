@@ -16,5 +16,7 @@
 
         void Send<TSender>(TSender sender, string message)
             where TSender : class;
+
+        void Subscribe<TSender>(object subscriber, string message, Func<TSender, Task> callback) where TSender : class;
     }
 }

@@ -57,6 +57,9 @@ namespace messaging_center.Impl
         public void Subscribe<TSender, TArgs>(object subscriber, string message, Func<TSender, TArgs, Task> callback) where TSender : class
             => InnerSubscribe<TSender>(subscriber, message, callback.Target, callback.GetMethodInfo(), typeof(TArgs));
 
+        public void Subscribe<TSender>(object subscriber, string message, Func<TSender, Task> callback) where TSender : class
+            => InnerSubscribe<TSender>(subscriber, message, callback.Target, callback.GetMethodInfo());
+
 
         private void InnerSubscribe<TSender>(object? subscriber, string message, object? target,
             MethodInfo methodInfo, Type? argType = null)

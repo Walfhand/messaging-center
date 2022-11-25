@@ -5,6 +5,12 @@
     <RootNamespace>messaging_center</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>messaging-center</Title>
+    <Authors>Walfhand</Authors>
+    <Description>A simple tool to manage events without going through delegates / events</Description>
+    <PackageTags>eventManager; event; subscriber;sender;</PackageTags>
+    <PackageProjectUrl>https://github.com/Walfhand/messaging-center</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
