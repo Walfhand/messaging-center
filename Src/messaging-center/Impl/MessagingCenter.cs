@@ -1,13 +1,12 @@
 ﻿using messaging_center.Interfaces;
+using Microsoft.Extensions.Logging;
 using System.Reflection;
 
 namespace messaging_center.Impl
 {
     public class MessagingCenter : IMessagingCenter
     {
-        private record SubscriptionKey(string SubscriptionType, string? Message, string? ArgType)
-        {
-        }
+        private record SubscriptionKey(string SubscriptionType, string? Message, string? ArgType) { }
 
         private class Subscription
         {
@@ -32,8 +31,13 @@ namespace messaging_center.Impl
         }
 
         private readonly Dictionary<SubscriptionKey, List<Subscription>> _subscriptions;
+        private readonly ILogger _logger;
 
-        public MessagingCenter() => _subscriptions = new Dictionary<SubscriptionKey, List<Subscription>>();
+        public MessagingCenter(ILogger logger) 
+        {
+            _subscriptions = new Dictionary<SubscriptionKey, List<Subscription>>();
+            _logger = logger;
+        } 
         public void Send<TSender, TArgs>(TSender sender, string message, TArgs args) 
             where TSender : class
             where TArgs : class 
@@ -62,6 +66,8 @@ namespace messaging_center.Impl
             if(target is null)
                 throw new ArgumentNullException(nameof(target));
 
+            _logger.LogDebug("New subscriber {0} for the target {1}", subscriber.GetType().Name, typeof(TSender).Name);
+
             var subscriptionKey = new SubscriptionKey(typeof(TSender).Name, message, argType?.Name);
 
             var subscriptionValue = new Subscription(subscriber, target, methodInfo);
@@ -81,7 +87,10 @@ namespace messaging_center.Impl
 
             if (_subscriptions.TryGetValue(subscriptionKey, out List<Subscription>? subs))
                 foreach (var sub in subs)
+                {
+                    _logger.LogDebug("Event send by {0} for the target {1}", sender.GetType().Name, sub.Subscriber.GetType().Name);
                     await sub.InvokeCallBack(sender, args);
+                }    
         }
     }
 }
