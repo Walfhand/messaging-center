@@ -6,8 +6,8 @@ namespace messaging_center
     {
         public Sender(IMessagingCenter messagingCenter)
         {
-            messagingCenter.Send(this, "SANS_ARGS");
-            messagingCenter.Send(this, "AVEC_ARGS", "Un message de la part d'un sender");
+            messagingCenter.Send(this, "WITH_ARGS");
+            messagingCenter.Send(this, "WITHOUT_ARGS", "An argument from a sender");
         }
     }
 }

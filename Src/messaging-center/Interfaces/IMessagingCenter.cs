@@ -18,5 +18,9 @@
             where TSender : class;
 
         void Subscribe<TSender>(object subscriber, string message, Func<TSender, Task> callback) where TSender : class;
+
+        void Unsubscribe<TSender>(object subscriber, string message);
+
+        void Unsubscribe<TSender, TArgs>(object subscriber, string message);
     }
 }

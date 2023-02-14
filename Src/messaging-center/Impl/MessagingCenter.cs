@@ -37,7 +37,7 @@ namespace messaging_center.Impl
         {
             _subscriptions = new Dictionary<SubscriptionKey, List<Subscription>>();
             _logger = logger;
-        } 
+        }
         public void Send<TSender, TArgs>(TSender sender, string message, TArgs args) 
             where TSender : class
             where TArgs : class 
@@ -50,6 +50,27 @@ namespace messaging_center.Impl
             where TSender : class
             where TArgs : class
             => InnerSubscribe<TSender>(subscriber, message, callback.Target, callback.GetMethodInfo(), typeof(TArgs));
+
+        public void Unsubscribe<TSender>(object subscriber, string message)
+            => InnerUnsubscribe<TSender>(subscriber, message);
+
+        public void Unsubscribe<TSender, TArgs>(object subscriber, string message)
+            => InnerUnsubscribe<TSender>(subscriber, message, typeof(TArgs));
+
+        private void InnerUnsubscribe<TSender>(object? subscriber, string message, Type? argType = null)
+        {
+            if (subscriber is null)
+                throw new ArgumentNullException(nameof(subscriber));
+
+            var subscriptionKey = new SubscriptionKey(typeof(TSender).Name, message, argType?.Name);
+
+            if (_subscriptions.TryGetValue(subscriptionKey, out List<Subscription>? value))
+            {
+                var subscriptionValue = value?.FirstOrDefault(x => x.Subscriber.Equals(subscriber));
+                if (subscriptionValue != null)
+                    value?.Remove(subscriptionValue);
+            }
+        }
 
         public void Subscribe<TSender>(object subscriber, string message, Action<TSender> callback) where TSender : class
             => InnerSubscribe<TSender>(subscriber, message, callback.Target, callback.GetMethodInfo());

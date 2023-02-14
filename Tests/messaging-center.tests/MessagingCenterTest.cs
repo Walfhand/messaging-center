@@ -26,6 +26,30 @@ namespace messaging_center.tests
         }
 
         [Fact]
+        public void GivenSubscriber_WhenUnsubscribe_ThenNoReceivedEvent()
+        {
+            bool eventReceived = false;
+
+            _messagingCenter.Subscribe<MessagingCenterTest>(this, "message", sender => eventReceived = true);
+            _messagingCenter.Unsubscribe<MessagingCenterTest>(this, "message");
+            _messagingCenter.Send(this, "message");
+
+            eventReceived.Should().Be(false);
+        }
+
+        [Fact]
+        public void GivenSubscriberWithArgs_WhenUnsubscribe_ThenNoReceivedEvent()
+        {
+            bool eventReceived = false;
+
+            _messagingCenter.Subscribe<MessagingCenterTest, string>(this, "message", (sender, args) => eventReceived = true);
+            _messagingCenter.Unsubscribe<MessagingCenterTest, string>(this, "message");
+            _messagingCenter.Send(this, "message");
+
+            eventReceived.Should().Be(false);
+        }
+
+        [Fact]
         public void GivenNullSubscriber_WhenSubscribe_ThenThrowException()
         {
             var act = () => _messagingCenter.Subscribe<MessagingCenterTest>(null, "message", sender => { });
