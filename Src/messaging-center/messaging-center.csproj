@@ -11,7 +11,7 @@
     <Description>A simple tool to manage events without going through delegates / events</Description>
     <PackageTags>eventManager; event; subscriber;sender;</PackageTags>
     <PackageProjectUrl>https://github.com/Walfhand/messaging-center</PackageProjectUrl>
-	<Version>1.0.1</Version>
+	<Version>1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
