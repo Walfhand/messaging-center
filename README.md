@@ -7,7 +7,7 @@ This event management package is designed to help you send and receive events in
 
 ## Install
 ```
-dotnet add package messaging-center --version 1.0.2
+dotnet add package messaging-center --version 1.0.3
 ```
 ## Usage
 You can either configure dependency injection using this
