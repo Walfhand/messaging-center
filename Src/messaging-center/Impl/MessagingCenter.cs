@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace messaging_center.Impl
 {
-    public class MessagingCenter : IMessagingCenter
+    public class MessagingCenter : IMessagingCenter, IDisposable
     {
         private readonly Dictionary<SubscriptionKey, List<Subscription>> _subscriptions;
         private readonly ILogger _logger;
@@ -94,5 +94,7 @@ namespace messaging_center.Impl
                     value?.Remove(subscriptionValue);
             }
         }
+
+        public void Dispose() => _subscriptions?.Clear();
     }
 }
